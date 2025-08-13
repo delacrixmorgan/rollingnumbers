@@ -1,8 +1,9 @@
 package io.dontsayboj.rollingnumbers
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.AirplanemodeActive
 import androidx.compose.material.icons.rounded.AttachMoney
-import androidx.compose.material.icons.rounded.DashboardCustomize
+import androidx.compose.material.icons.rounded.CurrencyBitcoin
 import androidx.compose.material.icons.rounded.Numbers
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -31,7 +32,8 @@ fun App() {
             NavHost(navController = navController, startDestination = BottomNavItem.Integer.route) {
                 composable(BottomNavItem.Integer.route) { IntegerScreen(innerPadding) }
                 composable(BottomNavItem.Decimal.route) { DecimalScreen(innerPadding) }
-                composable(BottomNavItem.Custom.route) { CustomScreen(innerPadding) }
+                composable(BottomNavItem.Currency.route) { CurrencyScreen(innerPadding) }
+                composable(BottomNavItem.Alphanumeric.route) { AlphanumericScreen(innerPadding) }
             }
         }
     }
@@ -75,9 +77,14 @@ enum class BottomNavItem(
         "decimal",
         Icons.Rounded.AttachMoney
     ),
-    Custom(
-        "Custom",
-        "custom",
-        Icons.Rounded.DashboardCustomize
+    Currency(
+        "Currency",
+        "currency",
+        Icons.Rounded.CurrencyBitcoin
+    ),
+    Alphanumeric(
+        "Alphanumeric",
+        "alphanumeric",
+        Icons.Rounded.AirplanemodeActive
     )
 }

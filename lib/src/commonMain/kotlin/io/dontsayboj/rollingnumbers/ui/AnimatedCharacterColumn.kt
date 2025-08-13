@@ -1,4 +1,4 @@
-package io.dontsayboj.rollingnumbers
+package io.dontsayboj.rollingnumbers.ui
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
@@ -19,6 +19,7 @@ import androidx.compose.ui.text.TextMeasurer
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
+import io.dontsayboj.rollingnumbers.ui.Utils
 import io.dontsayboj.rollingnumbers.levenshtein.LevenshteinAction
 import io.dontsayboj.rollingnumbers.model.CharacterIndices
 import io.dontsayboj.rollingnumbers.model.CharacterListData
@@ -89,7 +90,16 @@ internal fun AnimatedCharacterColumn(
                 animationSpec = tween(durationMillis = animationDuration),
             )
         } else {
-            animationState = animationState.copy(
+            // For non-animated cases or when characters are the same, 
+            // we still need to set up the character list properly
+            val characterListData = findCharacterListAndIndices(
+                animationTargetChar, animationTargetChar, characterLists, scrollingDirection,
+            )
+            
+            animationState = AnimationState(
+                characterList = characterListData.characterList,
+                startIndex = characterListData.endIndex,
+                endIndex = characterListData.endIndex,
                 currentChar = animationTargetChar,
                 targetChar = animationTargetChar,
             )
@@ -164,17 +174,18 @@ private fun findCharacterListAndIndices(
         }
     }
 
-    // Fallback: create a simple list with just the two characters
+    // Fallback: create a simple list with just the character(s)
     val fallbackList = if (startChar == endChar) {
-        charArrayOf(startChar)
+        // For same characters, create a list with EMPTY_CHAR and the character
+        charArrayOf(Utils.EMPTY_CHAR, startChar)
     } else {
-        charArrayOf(startChar, endChar)
+        charArrayOf(Utils.EMPTY_CHAR, startChar, endChar)
     }
 
     return CharacterListData(
         characterList = fallbackList,
-        startIndex = 0,
-        endIndex = if (startChar == endChar) 0 else 1,
+        startIndex = if (startChar == endChar) 1 else 1,
+        endIndex = if (startChar == endChar) 1 else 2,
     )
 }
 

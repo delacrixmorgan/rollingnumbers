@@ -1,6 +1,6 @@
 package io.dontsayboj.rollingnumbers.model
 
-import io.dontsayboj.rollingnumbers.Utils
+import io.dontsayboj.rollingnumbers.ui.Utils
 
 /**
  * Animation state for a column

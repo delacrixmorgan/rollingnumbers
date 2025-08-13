@@ -15,17 +15,14 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.rememberTextMeasurer
 import io.dontsayboj.rollingnumbers.levenshtein.LevenshteinAction
 import io.dontsayboj.rollingnumbers.levenshtein.LevenshteinUtils
+import io.dontsayboj.rollingnumbers.model.DefaultAnimationDuration
 import io.dontsayboj.rollingnumbers.model.ScrollingDirection
+import io.dontsayboj.rollingnumbers.ui.AnimatedCharacterColumn
+import io.dontsayboj.rollingnumbers.ui.Utils
 import kotlinx.coroutines.delay
 import kotlin.math.max
 
 /**
- * Based on Robinhood TickerView that provides smooth scrolling
- * text animations between different strings.
- *
- * This composable handles animating from one text to another by scrolling individual
- * characters vertically based on predefined character lists that dictate the animation sequence.
- *
  * @param text The target text to display
  * @param modifier Modifier to be applied to the RollingNumbers
  * @param characterLists List of character sequences that define animation paths
@@ -33,31 +30,22 @@ import kotlin.math.max
  * @param textStyle Style to apply to the text
  * @param scrollingDirection Preferred direction for scrolling animations
  * @param animateChanges Whether to animate text changes
- * @param useFullLevenshtein Whether to use the full Levenshtein algorithm (true) or simplified version (false)
  */
 @Composable
 fun RollingNumbers(
     text: String,
     modifier: Modifier = Modifier,
-    characterLists: List<String> = listOf(Utils.provideNumberList()),
-    animationDuration: Int = 350,
+    characterLists: List<String> = listOf(Utils.provideNumberString()),
+    animationDuration: Int = DefaultAnimationDuration.Default.duration,
     textStyle: TextStyle = LocalTextStyle.current,
     scrollingDirection: ScrollingDirection = ScrollingDirection.Any,
     animateChanges: Boolean = true,
-    useFullLevenshtein: Boolean = false
 ) {
-    var currentText by remember { mutableStateOf("") }
+    var currentText by remember { mutableStateOf(text) }
     var isAnimating by remember { mutableStateOf(false) }
 
     val textMeasurer = rememberTextMeasurer()
     val density = LocalDensity.current
-
-    // Initialize current text if empty
-    LaunchedEffect(Unit) {
-        if (currentText.isEmpty() && text.isNotEmpty()) {
-            currentText = text
-        }
-    }
 
     // Handle text changes
     LaunchedEffect(text) {
@@ -67,7 +55,7 @@ fun RollingNumbers(
             delay(animationDuration.toLong())
             currentText = text
             isAnimating = false
-        } else if (!animateChanges) {
+        } else if (!animateChanges || currentText.isEmpty()) {
             currentText = text
         }
     }
@@ -75,24 +63,16 @@ fun RollingNumbers(
     if (currentText.isEmpty()) return
 
     // Calculate column actions using Levenshtein algorithm
-    val columnActions = remember(currentText, text, useFullLevenshtein) {
+    val columnActions = remember(currentText, text) {
         if (currentText == text) {
             intArrayOf()
         } else {
             val supportedCharacters = characterLists.flatMap { it.toSet() }.toSet()
-            if (useFullLevenshtein) {
-                LevenshteinUtils.computeColumnActions(
-                    currentText.toCharArray(),
-                    text.toCharArray(),
-                    supportedCharacters,
-                )
-            } else {
-                computeColumnActionsSimple(
-                    currentText.toCharArray(),
-                    text.toCharArray(),
-                    supportedCharacters,
-                )
-            }
+            LevenshteinUtils.computeColumnActions(
+                currentText.toCharArray(),
+                text.toCharArray(),
+                supportedCharacters,
+            )
         }
     }
 
@@ -118,69 +98,4 @@ fun RollingNumbers(
             )
         }
     }
-}
-
-/**
- * Computes the column actions using a simplified Levenshtein algorithm
- */
-private fun computeColumnActionsSimple(
-    source: CharArray,
-    target: CharArray,
-    supportedCharacters: Set<Char>
-): IntArray {
-    val actions = mutableListOf<Int>()
-    var sourceIndex = 0
-    var targetIndex = 0
-
-    while (sourceIndex < source.size || targetIndex < target.size) {
-        when {
-            sourceIndex >= source.size -> {
-                // Insert remaining target characters
-                repeat(target.size - targetIndex) {
-                    actions.add(LevenshteinAction.INSERT)
-                }
-                break
-            }
-            targetIndex >= target.size -> {
-                // Delete remaining source characters
-                repeat(source.size - sourceIndex) {
-                    actions.add(LevenshteinAction.DELETE)
-                }
-                break
-            }
-            else -> {
-                val sourceChar = source[sourceIndex]
-                val targetChar = target[targetIndex]
-
-                when {
-                    sourceChar == targetChar -> {
-                        actions.add(LevenshteinAction.SAME)
-                        sourceIndex++
-                        targetIndex++
-                    }
-                    supportedCharacters.contains(sourceChar) &&
-                            supportedCharacters.contains(targetChar) -> {
-                        actions.add(LevenshteinAction.SAME)
-                        sourceIndex++
-                        targetIndex++
-                    }
-                    supportedCharacters.contains(targetChar) -> {
-                        actions.add(LevenshteinAction.INSERT)
-                        targetIndex++
-                    }
-                    supportedCharacters.contains(sourceChar) -> {
-                        actions.add(LevenshteinAction.DELETE)
-                        sourceIndex++
-                    }
-                    else -> {
-                        actions.add(LevenshteinAction.SAME)
-                        sourceIndex++
-                        targetIndex++
-                    }
-                }
-            }
-        }
-    }
-
-    return actions.toIntArray()
 }

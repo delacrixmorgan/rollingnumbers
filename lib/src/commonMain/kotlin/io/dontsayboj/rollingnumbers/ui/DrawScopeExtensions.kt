@@ -1,4 +1,4 @@
-package io.dontsayboj.rollingnumbers
+package io.dontsayboj.rollingnumbers.ui
 
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.drawscope.DrawScope
@@ -6,6 +6,7 @@ import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.text.TextMeasurer
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.drawText
+import io.dontsayboj.rollingnumbers.ui.Utils
 import io.dontsayboj.rollingnumbers.model.AnimationState
 import kotlin.math.abs
 

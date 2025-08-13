@@ -13,6 +13,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import io.dontsayboj.rollingnumbers.model.DefaultAnimationDuration
+import io.dontsayboj.rollingnumbers.ui.Utils
+import io.dontsayboj.rollingnumbers.ui.format
 import kotlinx.coroutines.delay
 import kotlin.random.Random
 
@@ -24,19 +27,18 @@ fun IntegerScreen(innerPadding: PaddingValues) {
             .consumeWindowInsets(innerPadding),
         contentAlignment = Alignment.Center
     ) {
-        var amount by remember { mutableStateOf(1) }
-
+        var amount by remember { mutableStateOf(0) }
+        LaunchedEffect(Unit) {
+            while (true) {
+                delay(3_000)
+                amount += Random.nextInt(10, 1_000)
+            }
+        }
         RollingNumbers(
-            text = amount.toString(),
+            text = amount.format(),
             textStyle = MaterialTheme.typography.displayLarge,
-            characterLists = listOf(Utils.provideNumberList()),
-            animationDuration = 800,
+            characterLists = listOf(Utils.provideNumberString()),
+            animationDuration = DefaultAnimationDuration.Slow.duration,
         )
-//        LaunchedEffect(Unit) {
-//            while (true) {
-//                delay(3_000)
-//                amount += Random.nextInt(10, 100)
-//            }
-//        }
     }
 }
