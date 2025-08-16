@@ -1,6 +1,7 @@
 package io.dontsayboj.rollingnumbers
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,30 +14,41 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import io.dontsayboj.rollingnumbers.model.DefaultAnimationDuration
+import io.dontsayboj.rollingnumbers.ui.Utils
 import kotlinx.coroutines.delay
 import kotlin.random.Random
 
 @Composable
-fun CustomScreen(innerPadding: PaddingValues) {
+fun AlphanumericScreen(innerPadding: PaddingValues) {
     Box(
         Modifier
             .fillMaxSize()
             .consumeWindowInsets(innerPadding),
         contentAlignment = Alignment.Center
     ) {
-        var amount by remember { mutableStateOf(0) }
+        var text by remember { mutableStateOf(randomFlightNumber()) }
         LaunchedEffect(Unit) {
             while (true) {
                 delay(3_000)
-                amount += Random.nextInt(10, 100)
+                text = randomFlightNumber()
             }
         }
-
-        RollingNumbers(
-            text = amount.toString(),
-            textStyle = MaterialTheme.typography.displayLarge,
-            characterLists = listOf(Utils.provideNumberList()),
-            animationDuration = 800,
-        )
+        Column {
+            RollingNumbers(
+                text = text,
+                textStyle = MaterialTheme.typography.displayLarge,
+                characterLists = Utils.provideAlphanumericList(),
+                animationDuration = DefaultAnimationDuration.Slow.duration,
+            )
+        }
     }
+}
+
+private fun randomFlightNumber(): String {
+    val letters = (1..2)
+        .map { Random.nextInt(65, 91).toChar() }
+        .joinToString("")
+    val numbers = Random.nextInt(0, 10000).toString().padStart(4, '0')
+    return "$letters$numbers"
 }

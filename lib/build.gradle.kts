@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.compose.compiler)
+    id("maven-publish")
 }
 
 kotlin {
@@ -13,7 +14,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { target ->
         target.binaries.framework {
-            baseName = "NumberKeyboard"
+            baseName = "RollingNumbers"
             isStatic = true
         }
     }
@@ -34,14 +35,11 @@ android {
 
     defaultConfig {
         minSdk = 24
+        version = "0.0.1"
         consumerProguardFiles("consumer-rules.pro")
     }
 
     publishing {
         singleVariant("release")
     }
-}
-
-dependencies {
-    debugImplementation(compose.uiTooling)
 }

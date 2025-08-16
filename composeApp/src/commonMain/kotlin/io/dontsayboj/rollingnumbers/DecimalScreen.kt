@@ -1,6 +1,7 @@
 package io.dontsayboj.rollingnumbers
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,6 +14,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import io.dontsayboj.rollingnumbers.model.DefaultAnimationDuration
+import io.dontsayboj.rollingnumbers.ui.Utils
+import io.dontsayboj.rollingnumbers.ui.format
 import kotlinx.coroutines.delay
 import kotlin.random.Random
 
@@ -24,19 +28,20 @@ fun DecimalScreen(innerPadding: PaddingValues) {
             .consumeWindowInsets(innerPadding),
         contentAlignment = Alignment.Center
     ) {
-        var amount by remember { mutableStateOf(0) }
+        var amount by remember { mutableStateOf(0.0) }
         LaunchedEffect(Unit) {
             while (true) {
                 delay(3_000)
-                amount += Random.nextInt(10, 100)
+                amount += Random.nextDouble(10.0, 100.0).roundUp(2)
             }
         }
-
-        RollingNumbers(
-            text = amount.toString(),
-            textStyle = MaterialTheme.typography.displayLarge,
-            characterLists = listOf(Utils.provideNumberList()),
-            animationDuration = 800,
-        )
+        Column {
+            RollingNumbers(
+                text = amount.format(),
+                textStyle = MaterialTheme.typography.displayLarge,
+                characterLists = listOf(Utils.provideNumberString()),
+                animationDuration = DefaultAnimationDuration.Slow.duration,
+            )
+        }
     }
 }
