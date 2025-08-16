@@ -66,7 +66,7 @@ Add the dependency:
 
 ```groovy
 dependencies {
-    implementation "io.dontsayboj:rollingnumbers:X.X.X"
+    implementation "com.github.delacrixmorgan:rollingnumbers:X.X.X"
 }
 ```
 
