@@ -17,7 +17,7 @@ locale-friendly money displays**.
 
 | Currency                                                                                      | Alphanumeric                                                                                  |
 |-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| <video src="https://github.com/user-attachments/assets/034ffb97-0858-4e0d-addc-5a3b431e63e0"> | <video src="https://github.com/user-attachments/assets/d12ff122-1e95-4879-88b2-9003f1ac53cb"> |
+| <video src="https://github.com/user-attachments/assets/3a10016b-69fc-4cf2-9db9-3c3cc4182fc2"> | <video src="https://github.com/user-attachments/assets/d12ff122-1e95-4879-88b2-9003f1ac53cb"> |
 
 ## ✨ Features
 
@@ -120,19 +120,29 @@ RollingNumbers(
 
 ### `CurrencyRollingNumbers`
 
-| Parameter                 | Type           | Default                                     | Description                                            |
-|---------------------------|----------------|---------------------------------------------|--------------------------------------------------------|
-| `amount`                  | `Double`       | **required**                                | Target amount to display.                              |
-| `modifier`                | `Modifier`     | `Modifier`                                  | Compose modifier for layout/styling.                   |
-| `characterLists`          | `List<String>` | `listOf(Utils.provideNumberString())`       | List of character sequences defining animation paths.  |
-| `animationDuration`       | `Int`          | `DefaultAnimationDuration.Default.duration` | Duration of the scroll animation in milliseconds.      |
-| `textStyle`               | `TextStyle`    | `LocalTextStyle.current`                    | Style applied to the text.                             |
-| `animateChanges`          | `Boolean`      | `true`                                      | Whether to animate changes or update instantly.        |
-| `decimals`                | `Int`          | `2`                                         | Number of decimal places to format.                    |
-| `currencySymbol`          | `String`       | `"$"`                                       | Currency symbol.                                       |
-| `isCurrencySymbolInFront` | `Boolean`      | Locale preference                           | Whether the currency symbol appears before the number. |
-| `decimalSeparator`        | `Char`         | Locale preference                           | Decimal separator character.                           |
-| `groupingSeparator`       | `Char`         | Locale preference                           | Thousands separator character.                         |
+| Parameter                        | Type           | Default                                     | Description                                               |
+|----------------------------------|----------------|---------------------------------------------|-----------------------------------------------------------|
+| `amount`                         | `Double`       | **required**                                | Target amount to display.                                 |
+| `modifier`                       | `Modifier`     | `Modifier`                                  | Compose modifier for layout/styling.                      |
+| `characterLists`                 | `List<String>` | `listOf(Utils.provideNumberString())`       | List of character sequences defining animation paths.     |
+| `animationDuration`              | `Int`          | `DefaultAnimationDuration.Default.duration` | Duration of the scroll animation in milliseconds.         |
+| `textStyle`                      | `TextStyle`    | `LocalTextStyle.current`                    | Style applied to the text.                                |
+| `animateChanges`                 | `Boolean`      | `true`                                      | Whether to animate changes or update instantly.           |
+| `decimals`                       | `Int`          | `2`                                         | Number of decimal places to format.                       |
+| `currencySymbol`                 | `String`       | `"$"`                                       | Currency symbol.                                          |
+| `spacingInBetweenCurrencySymbol` | `Dp`           | `8.dp`                                      | Spacing in dp between currency symbol and RollingNumbers. |
+| `spacingInBetweenSignedSymbol`   | `Dp`           | `8.dp`                                      | Spacing in dp between signed symbol and RollingNumbers    |
+| `isCurrencySymbolInFront`        | `Boolean`      | Locale preference                           | Whether the currency symbol appears before the number.    |
+| `decimalSeparator`               | `Char`         | Locale preference                           | Decimal separator character.                              |
+| `groupingSeparator`              | `Char`         | Locale preference                           | Thousands separator character.                            |
+
+### `DefaultAnimationDuration in ms`
+
+| Attribute          | Type  | Value |
+|--------------------|-------|-------|
+| `Slow`             | `Int` | 850   | 
+| `Medium (Default)` | `Int` | 450   | 
+| `Fast`             | `Int` | 250   |
 
 ## 🔧 Developer Notes
 
