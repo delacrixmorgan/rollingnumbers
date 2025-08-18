@@ -17,7 +17,7 @@ locale-friendly money displays**.
 
 | Currency                                                                                      | Alphanumeric                                                                                  |
 |-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| <video src="https://github.com/user-attachments/assets/034ffb97-0858-4e0d-addc-5a3b431e63e0"> | <video src="https://github.com/user-attachments/assets/d12ff122-1e95-4879-88b2-9003f1ac53cb"> |
+| <video src="https://github.com/user-attachments/assets/3a10016b-69fc-4cf2-9db9-3c3cc4182fc2"> | <video src="https://github.com/user-attachments/assets/d12ff122-1e95-4879-88b2-9003f1ac53cb"> |
 
 ## ✨ Features
 
