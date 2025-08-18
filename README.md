@@ -134,6 +134,15 @@ RollingNumbers(
 | `decimalSeparator`        | `Char`         | Locale preference                           | Decimal separator character.                           |
 | `groupingSeparator`       | `Char`         | Locale preference                           | Thousands separator character.                         |
 
+### `DefaultAnimationDuration in ms`
+
+| Parameter                          | Type  | Value |
+|------------------------------------|-------|-------|
+| `DefaultAnimationDuration.Slow`    | `Int` | 850   | 
+| `DefaultAnimationDuration.Medium`  | `Int` | 450   | 
+| `DefaultAnimationDuration.Fast`    | `Int` | 250   | 
+| `DefaultAnimationDuration.Default` | `Int` | 450   | 
+
 ## 🔧 Developer Notes
 
 The library uses:
