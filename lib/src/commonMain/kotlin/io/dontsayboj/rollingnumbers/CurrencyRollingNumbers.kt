@@ -1,6 +1,8 @@
 package io.dontsayboj.rollingnumbers
 
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -11,6 +13,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import io.dontsayboj.rollingnumbers.model.DefaultAnimationDuration
 import io.dontsayboj.rollingnumbers.model.ScrollingDirection
 import io.dontsayboj.rollingnumbers.ui.Utils
@@ -25,6 +29,8 @@ import io.dontsayboj.rollingnumbers.ui.format
  * @param animateChanges Whether to animate text changes
  * @param decimals Decimal points when formatting amount
  * @param currencySymbol Currency symbol to display
+ * @param spacingInBetweenCurrencySymbol Spacing in dp between currency symbol and RollingNumbers
+ * @param spacingInBetweenSignedSymbol Spacing in dp between signed symbol and RollingNumbers
  * @param isCurrencySymbolInFront Determine the position of the currencySymbol
  * @param decimalSeparator Separator for decimal points
  * @param groupingSeparator Separator for grouping points for thousands.
@@ -39,6 +45,8 @@ fun CurrencyRollingNumbers(
     animateChanges: Boolean = true,
     decimals: Int = 2,
     currencySymbol: String = "$",
+    spacingInBetweenCurrencySymbol: Dp = 8.dp,
+    spacingInBetweenSignedSymbol: Dp = 8.dp,
     isCurrencySymbolInFront: Boolean = isCurrencySymbolInFront(),
     decimalSeparator: Char = getDecimalSeparator(),
     groupingSeparator: Char = getGroupingSeparator(),
@@ -60,10 +68,12 @@ fun CurrencyRollingNumbers(
 
     Row(modifier = modifier) {
         if (amount < 0) {
-            Text(text = "-", style = textStyle)
+            Text(text = "−", style = textStyle)
+            Spacer(Modifier.width(spacingInBetweenSignedSymbol))
         }
         if (isCurrencySymbolInFront) {
             Text(text = currencySymbol, style = textStyle)
+            Spacer(Modifier.width(spacingInBetweenCurrencySymbol))
         }
         RollingNumbers(
             text = amount.format(
@@ -79,6 +89,7 @@ fun CurrencyRollingNumbers(
             animateChanges = animateChanges,
         )
         if (!isCurrencySymbolInFront) {
+            Spacer(Modifier.width(spacingInBetweenCurrencySymbol))
             Text(text = currencySymbol, style = textStyle)
         }
     }
