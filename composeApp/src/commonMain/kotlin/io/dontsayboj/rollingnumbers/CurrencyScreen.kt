@@ -27,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import io.dontsayboj.rollingnumbers.model.DefaultAnimationDuration
 import io.dontsayboj.rollingnumbers.ui.Utils
@@ -43,6 +44,7 @@ fun CurrencyScreen(innerPadding: PaddingValues) {
         val operations = Operation.entries
         var amount by remember { mutableStateOf(0.0) }
         var isCurrencySymbolInFrontChecked by remember { mutableStateOf(true) }
+        var showPositiveSignedSymbolChecked by remember { mutableStateOf(false) }
         var alternativeSeparatorChecked by remember { mutableStateOf(false) }
         var selectedOperationIndex by remember { mutableIntStateOf(0) }
         val selectedOperation by derivedStateOf {
@@ -63,8 +65,11 @@ fun CurrencyScreen(innerPadding: PaddingValues) {
             modifier = Modifier.align(Alignment.Center),
             amount = amount,
             textStyle = MaterialTheme.typography.displayLarge,
+            positiveSignedSymbolColor = Color.Green,
+            negativeSignedSymbolColor = Color.Red,
             characterLists = listOf(Utils.provideNumberString()),
             animationDuration = DefaultAnimationDuration.Slow.duration,
+            showPositiveSignedSymbol = showPositiveSignedSymbolChecked,
             isCurrencySymbolInFront = isCurrencySymbolInFrontChecked,
             decimalSeparator = if (!alternativeSeparatorChecked) '.' else ',',
             groupingSeparator = if (!alternativeSeparatorChecked) ',' else '.',
@@ -81,6 +86,13 @@ fun CurrencyScreen(innerPadding: PaddingValues) {
                 Checkbox(
                     checked = isCurrencySymbolInFrontChecked,
                     onCheckedChange = { isCurrencySymbolInFrontChecked = it },
+                )
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text("showPositiveSignedSymbol")
+                Checkbox(
+                    checked = showPositiveSignedSymbolChecked,
+                    onCheckedChange = { showPositiveSignedSymbolChecked = it },
                 )
             }
             Row(verticalAlignment = Alignment.CenterVertically) {

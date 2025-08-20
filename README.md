@@ -127,11 +127,14 @@ RollingNumbers(
 | `characterLists`                 | `List<String>` | `listOf(Utils.provideNumberString())`       | List of character sequences defining animation paths.     |
 | `animationDuration`              | `Int`          | `DefaultAnimationDuration.Default.duration` | Duration of the scroll animation in milliseconds.         |
 | `textStyle`                      | `TextStyle`    | `LocalTextStyle.current`                    | Style applied to the text.                                |
+| `positiveSignedSymbolColor`      | `Color`        | textStyle's colour                          | Positive signed symbol colour.                            |
+| `negativeSignedSymbolColor`      | `Color`        | textStyle's colour                          | Negative signed symbol colour.                            |
 | `animateChanges`                 | `Boolean`      | `true`                                      | Whether to animate changes or update instantly.           |
 | `decimals`                       | `Int`          | `2`                                         | Number of decimal places to format.                       |
 | `currencySymbol`                 | `String`       | `"$"`                                       | Currency symbol.                                          |
 | `spacingInBetweenCurrencySymbol` | `Dp`           | `8.dp`                                      | Spacing in dp between currency symbol and RollingNumbers. |
 | `spacingInBetweenSignedSymbol`   | `Dp`           | `8.dp`                                      | Spacing in dp between signed symbol and RollingNumbers    |
+| `showPositiveSignedSymbol`       | Boolean        | false                                       | Show signed symbol for positive amount                    |
 | `isCurrencySymbolInFront`        | `Boolean`      | Locale preference                           | Whether the currency symbol appears before the number.    |
 | `decimalSeparator`               | `Char`         | Locale preference                           | Decimal separator character.                              |
 | `groupingSeparator`              | `Char`         | Locale preference                           | Thousands separator character.                            |
