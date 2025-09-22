@@ -36,6 +36,10 @@ kotlin {
             implementation(libs.androidx.navigation.compose)
         }
 
+        iosMain.dependencies {
+            implementation(compose.ui)
+        }
+
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
@@ -76,4 +80,3 @@ compose.desktop {
         }
     }
 }
-
