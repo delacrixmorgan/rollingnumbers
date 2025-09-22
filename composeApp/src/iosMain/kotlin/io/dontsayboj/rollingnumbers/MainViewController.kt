@@ -1,5 +1,5 @@
 package io.dontsayboj.rollingnumbers
 
-import androidx.compose.ui.uikit.ComposeUIViewController
+import androidx.compose.ui.window.ComposeUIViewController
 
 fun MainViewController() = ComposeUIViewController { App() }

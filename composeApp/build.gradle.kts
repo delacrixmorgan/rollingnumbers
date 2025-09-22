@@ -38,6 +38,8 @@ kotlin {
 
         iosMain.dependencies {
             implementation(compose.ui)
+            implementation(compose.foundation)
+//            implementation(compose.material3)
         }
 
         desktopMain.dependencies {
