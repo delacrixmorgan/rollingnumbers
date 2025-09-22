@@ -14,7 +14,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import io.dontsayboj.rollingnumbers.model.DefaultAnimationDuration
 import io.dontsayboj.rollingnumbers.ui.Utils
 import kotlinx.coroutines.delay
 import kotlin.random.Random
@@ -39,7 +38,6 @@ fun AlphanumericScreen(innerPadding: PaddingValues) {
                 text = text,
                 textStyle = MaterialTheme.typography.displayLarge,
                 characterLists = Utils.provideAlphanumericList(),
-                animationDuration = DefaultAnimationDuration.Slow.duration,
             )
         }
     }

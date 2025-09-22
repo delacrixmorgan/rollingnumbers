@@ -14,7 +14,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import io.dontsayboj.rollingnumbers.model.DefaultAnimationDuration
 import io.dontsayboj.rollingnumbers.ui.Utils
 import io.dontsayboj.rollingnumbers.ui.format
 import kotlinx.coroutines.delay
@@ -40,7 +39,6 @@ fun DecimalScreen(innerPadding: PaddingValues) {
                 text = amount.format(),
                 textStyle = MaterialTheme.typography.displayLarge,
                 characterLists = listOf(Utils.provideNumberString()),
-                animationDuration = DefaultAnimationDuration.Slow.duration,
             )
         }
     }
