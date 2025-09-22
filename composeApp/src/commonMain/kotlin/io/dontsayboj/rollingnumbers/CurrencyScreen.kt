@@ -41,11 +41,17 @@ fun CurrencyScreen(innerPadding: PaddingValues) {
             .fillMaxSize()
             .consumeWindowInsets(innerPadding),
     ) {
+        val speeds = Speed.entries
         val operations = Operation.entries
         var amount by remember { mutableStateOf(0.0) }
         var isCurrencySymbolInFrontChecked by remember { mutableStateOf(true) }
         var showPositiveSignedSymbolChecked by remember { mutableStateOf(false) }
         var alternativeSeparatorChecked by remember { mutableStateOf(false) }
+        var selectedSpeedIndex by remember { mutableIntStateOf(1) }
+        val selectedSpeed by derivedStateOf {
+            speeds[selectedSpeedIndex]
+        }
+
         var selectedOperationIndex by remember { mutableIntStateOf(0) }
         val selectedOperation by derivedStateOf {
             operations[selectedOperationIndex]
@@ -53,7 +59,11 @@ fun CurrencyScreen(innerPadding: PaddingValues) {
 
         LaunchedEffect(Unit) {
             while (true) {
-                delay(3_000)
+                when (selectedSpeed) {
+                    Speed.Slow -> delay(5_000)
+                    Speed.Medium -> delay(3_000)
+                    Speed.Fast -> delay(2_000)
+                }
                 when (selectedOperation) {
                     Operation.Add -> amount += Random.nextDouble(10.0, 100.0).roundUp(2)
                     Operation.Minus -> amount -= Random.nextDouble(10.0, 100.0).roundUp(2)
@@ -68,7 +78,11 @@ fun CurrencyScreen(innerPadding: PaddingValues) {
             positiveSignedSymbolColor = Color.Green,
             negativeSignedSymbolColor = Color.Red,
             characterLists = listOf(Utils.provideNumberString()),
-            animationDuration = DefaultAnimationDuration.Slow.duration,
+            animationDuration = when (selectedSpeed) {
+                Speed.Slow -> DefaultAnimationDuration.Slow.duration
+                Speed.Medium -> DefaultAnimationDuration.Medium.duration
+                Speed.Fast -> DefaultAnimationDuration.Fast.duration
+            },
             showPositiveSignedSymbol = showPositiveSignedSymbolChecked,
             isCurrencySymbolInFront = isCurrencySymbolInFrontChecked,
             decimalSeparator = if (!alternativeSeparatorChecked) '.' else ',',
@@ -104,6 +118,26 @@ fun CurrencyScreen(innerPadding: PaddingValues) {
             }
             Spacer(Modifier.height(16.dp))
             SingleChoiceSegmentedButtonRow {
+                speeds.forEachIndexed { index, label ->
+                    SegmentedButton(
+                        shape = SegmentedButtonDefaults.itemShape(
+                            index = index,
+                            count = speeds.size
+                        ),
+                        onClick = { selectedSpeedIndex = index },
+                        selected = index == selectedSpeedIndex,
+                        label = {
+                            BasicText(
+                                text = label.name,
+                                maxLines = 1,
+                                autoSize = TextAutoSize.StepBased(),
+                            )
+                        }
+                    )
+                }
+            }
+            Spacer(Modifier.height(16.dp))
+            SingleChoiceSegmentedButtonRow {
                 operations.forEachIndexed { index, label ->
                     SegmentedButton(
                         shape = SegmentedButtonDefaults.itemShape(
@@ -129,4 +163,10 @@ fun CurrencyScreen(innerPadding: PaddingValues) {
 enum class Operation {
     Add,
     Minus
+}
+
+enum class Speed {
+    Slow,
+    Medium,
+    Fast
 }

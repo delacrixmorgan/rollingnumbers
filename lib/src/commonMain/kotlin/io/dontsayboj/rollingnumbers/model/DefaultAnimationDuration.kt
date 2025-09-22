@@ -4,9 +4,9 @@ package io.dontsayboj.rollingnumbers.model
  * DefaultAnimationDuration in ms
  */
 enum class DefaultAnimationDuration(val duration: Int) {
-    Slow(840),
-    Medium(450),
-    Fast(250);
+    Slow(3_500),
+    Medium(2_000),
+    Fast(1_000);
 
     companion object {
         val Default = Medium

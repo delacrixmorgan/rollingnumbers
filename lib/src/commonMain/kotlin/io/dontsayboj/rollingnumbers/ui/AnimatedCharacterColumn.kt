@@ -223,20 +223,27 @@ private fun getCharacterIndices(
 
     return when (scrollingDirection) {
         ScrollingDirection.Down -> {
-            var adjustedEndIndex = endIndex
             if (endChar == Utils.EMPTY_CHAR) {
-                adjustedEndIndex = characterList.size
-            } else if (endIndex < startIndex) {
-                adjustedEndIndex += numOriginalCharacters
+                // Special case for animating to empty character
+                CharacterIndices(startIndex, characterList.size)
+            } else if (startIndex < endIndex) {
+                // Going backwards in sequence (e.g., 0 to 9), wrap around
+                CharacterIndices(startIndex + numOriginalCharacters, endIndex)
+            } else {
+                // Going forwards in sequence (e.g., 2 to 1), go directly
+                CharacterIndices(startIndex, endIndex)
             }
-            CharacterIndices(startIndex, adjustedEndIndex)
         }
         ScrollingDirection.Up -> {
-            var adjustedStartIndex = startIndex
-            if (startIndex < endIndex) {
-                adjustedStartIndex += numOriginalCharacters
+            // For Up direction, we want to go the shortest path upward
+            // Only wrap around if we're going backwards (like from 9 to 0)
+            if (startIndex > endIndex) {
+                // Going backwards in the list (e.g., 9 to 0), so wrap around
+                CharacterIndices(startIndex, endIndex + numOriginalCharacters)
+            } else {
+                // Going forwards in the list (e.g., 1 to 2), go directly
+                CharacterIndices(startIndex, endIndex)
             }
-            CharacterIndices(adjustedStartIndex, endIndex)
         }
         ScrollingDirection.Any -> {
             // Choose the shorter animation path
