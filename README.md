@@ -143,9 +143,9 @@ RollingNumbers(
 
 | Attribute          | Type  | Value |
 |--------------------|-------|-------|
-| `Slow`             | `Int` | 850   | 
-| `Medium (Default)` | `Int` | 450   | 
-| `Fast`             | `Int` | 250   |
+| `Slow`             | `Int` | 3_500 | 
+| `Medium (Default)` | `Int` | 2_000 | 
+| `Fast`             | `Int` | 1_000 |
 
 ## 🔧 Developer Notes
 

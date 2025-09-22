@@ -20,6 +20,7 @@ import io.dontsayboj.rollingnumbers.model.DefaultAnimationDuration
 import io.dontsayboj.rollingnumbers.model.ScrollingDirection
 import io.dontsayboj.rollingnumbers.ui.Utils
 import io.dontsayboj.rollingnumbers.ui.format
+import kotlin.math.abs
 
 /**
  * @param amount The target amount to display
@@ -61,10 +62,11 @@ fun CurrencyRollingNumbers(
     // Remember the previous amount to determine scrolling direction
     var previousAmount by remember { mutableStateOf(amount) }
 
-    // Determine the scrolling direction based on previousAmount
+    // Determine the scrolling direction based on absolute values (magnitude)
+    // This ensures proper direction for negative numbers
     val scrollingDirection = when {
-        previousAmount < amount -> ScrollingDirection.Up
-        previousAmount > amount -> ScrollingDirection.Down
+        abs(previousAmount) < abs(amount) -> ScrollingDirection.Up
+        abs(previousAmount) > abs(amount) -> ScrollingDirection.Down
         else -> ScrollingDirection.Any
     }
 
