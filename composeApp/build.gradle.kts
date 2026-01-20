@@ -39,7 +39,7 @@ kotlin {
         iosMain.dependencies {
             implementation(compose.ui)
             implementation(compose.foundation)
-//            implementation(compose.material3)
+            implementation(compose.material3)
         }
 
         desktopMain.dependencies {
@@ -64,7 +64,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android.txt"),
+                getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
