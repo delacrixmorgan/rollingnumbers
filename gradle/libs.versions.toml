@@ -1,13 +1,13 @@
 [versions]
-agp = "8.13.0"
+agp = "8.13.2"
 android-compileSdk = "36"
 android-minSdk = "21"
 android-targetSdk = "36"
-composeMultiplatform = "1.9.0"
-compose-bom = "2025.09.00"
-androidx-navigation-compose = "2.9.0"
-compose-hot-reload = "1.0.0-beta08"
-kotlin = "2.2.20"
+composeMultiplatform = "1.10.0"
+compose-bom = "2026.01.00"
+androidx-navigation-compose = "2.9.1"
+compose-hot-reload = "1.0.0"
+kotlin = "2.3.0"
 kotlinx-coroutines = "1.10.2"
 
 [libraries]

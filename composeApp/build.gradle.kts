@@ -55,7 +55,7 @@ android {
 
     defaultConfig {
         applicationId = "io.dontsayboj.rollingnumbers"
-        minSdk = libs.versions.android.minSdk.get().toInt()
+        minSdk = 23
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0.0"
