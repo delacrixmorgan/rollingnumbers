@@ -39,7 +39,7 @@ kotlin {
         iosMain.dependencies {
             implementation(compose.ui)
             implementation(compose.foundation)
-//            implementation(compose.material3)
+            implementation(compose.material3)
         }
 
         desktopMain.dependencies {
@@ -55,7 +55,7 @@ android {
 
     defaultConfig {
         applicationId = "io.dontsayboj.rollingnumbers"
-        minSdk = libs.versions.android.minSdk.get().toInt()
+        minSdk = 23
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0.0"
@@ -64,7 +64,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android.txt"),
+                getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
