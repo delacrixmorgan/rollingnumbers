@@ -1,6 +1,6 @@
 [versions]
 agp = "9.0.0"
-rollingnumbers = "0.0.8"
+rollingnumbers = "0.2.1"
 android-compileSdk = "36"
 android-minSdk = "21"
 android-targetSdk = "36"
@@ -10,6 +10,7 @@ androidx-navigation-compose = "2.9.1"
 compose-hot-reload = "1.0.0"
 kotlin = "2.3.0"
 kotlinx-coroutines = "1.10.2"
+mavenPublish = "0.36.0"
 
 [libraries]
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
@@ -24,3 +25,4 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 compose-hot-reload = { id = "org.jetbrains.compose.hot-reload", version.ref = "compose-hot-reload" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }

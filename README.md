@@ -1,7 +1,5 @@
 # Rolling Numbers - Odometer Scrolling Effect TextView 🎰
 
-[![](https://jitpack.io/v/delacrixmorgan/rollingnumbers.svg)](https://jitpack.io/#delacrixmorgan/rollingnumbers)
-
 **RollingNumbers** is a Kotlin Multiplatform Compose library that animates text changes by rolling
 individual characters vertically — just like a **odometer**, an **old school cash
 register**, or those nostalgic **airport split-flap boards**.
@@ -48,17 +46,17 @@ locale-friendly money displays**.
 
 ## 📦 Installation
 
-Add the dependency in your `build.gradle`:
+Add the dependency in your `build.gradle.kts`:
 
 ### Step 1
 
-Add the JitPack repository to your `build.gradle` file:
+Add the mavenCentral repository to your `settings.gradle.kts` file:
 
-```gradle
-allprojects {
-	repositories {
-		maven { url "https://jitpack.io" }
-	}
+```groovy
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+    }
 }
 ```
 
@@ -68,7 +66,7 @@ Add the dependency:
 
 ```groovy
 dependencies {
-    implementation "com.github.delacrixmorgan:rollingnumbers:X.X.X"
+    implementation "io.github.delacrixmorgan:rollingnumbers:X.X.X"
 }
 ```
 
