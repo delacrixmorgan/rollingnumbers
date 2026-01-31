@@ -41,7 +41,7 @@ mavenPublishing {
 
 kotlin {
     androidLibrary {
-        namespace = "com.dontsaybojio.rollingnumbers"
+        namespace = "com.dontsaybojio.rollingnumbers.lib"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
     }

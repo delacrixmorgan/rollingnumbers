@@ -46,11 +46,11 @@ kotlin {
 
 compose.desktop {
     application {
-        mainClass = "io.dontsayboj.rollingnumbers.MainKt"
+        mainClass = "com.dontsaybojio.rollingnumbers.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "io.dontsayboj.rollingnumbers"
+            packageName = "com.dontsaybojio.rollingnumbers"
             packageVersion = "1.0.0"
         }
     }
