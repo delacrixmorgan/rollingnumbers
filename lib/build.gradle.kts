@@ -11,9 +11,9 @@ plugins {
 
 mavenPublishing {
     coordinates(
-        groupId = "io.github.delacrixmorgan",
+        groupId = "com.dontsaybojio",
         artifactId = "rollingnumbers",
-        version = "0.2.1"
+        version = libs.versions.rollingnumbers.get()
     )
     pom {
         name.set("Rolling Numbers")
