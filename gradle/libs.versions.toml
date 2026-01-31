@@ -2,10 +2,11 @@
 agp = "9.0.0"
 rollingnumbers = "0.2.1"
 android-compileSdk = "36"
-android-minSdk = "21"
+android-minSdk = "23"
 android-targetSdk = "36"
+androidx-activity = "1.12.3"
 composeMultiplatform = "1.10.0"
-compose-bom = "2026.01.00"
+composeBom = "2026.01.01"
 androidx-navigation-compose = "2.9.1"
 compose-hot-reload = "1.0.0"
 kotlin = "2.3.0"
@@ -13,13 +14,14 @@ kotlinx-coroutines = "1.10.2"
 mavenPublish = "0.36.0"
 
 [libraries]
-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "androidx-navigation-compose" }
 kotlinx-coroutinesSwing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-android-library = { id = "com.android.library", version.ref = "agp" }
+android-kmp-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 compose-hot-reload = { id = "org.jetbrains.compose.hot-reload", version.ref = "compose-hot-reload" }
