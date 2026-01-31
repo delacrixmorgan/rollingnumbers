@@ -34,18 +34,18 @@ kotlin {
 
         commonMain.dependencies {
             implementation(project(":lib"))
-            implementation(libs.ui.tooling.preview)
+            implementation(libs.compose.ui.tooling.preview)
 
-            implementation(compose.material3)
-            implementation(compose.materialIconsExtended)
+            implementation(libs.compose.material3)
+            implementation(libs.compose.material.icons.extended)
 
             implementation(libs.androidx.navigation.compose)
         }
 
         iosMain.dependencies {
-            implementation(compose.ui)
-            implementation(compose.foundation)
-            implementation(compose.material3)
+            implementation(libs.compose.ui)
+            implementation(libs.compose.foundation)
+            implementation(libs.compose.material3)
         }
 
         desktopMain.dependencies {
@@ -54,9 +54,9 @@ kotlin {
         }
 
         wasmJsMain.dependencies {
-            implementation(compose.ui)
-            implementation(compose.foundation)
-            implementation(compose.material3)
+            implementation(libs.compose.ui)
+            implementation(libs.compose.foundation)
+            implementation(libs.compose.material3)
         }
     }
 }
@@ -74,5 +74,5 @@ compose.desktop {
 }
 
 dependencies {
-    androidRuntimeClasspath(libs.ui.tooling)
+    androidRuntimeClasspath(libs.compose.ui.tooling)
 }

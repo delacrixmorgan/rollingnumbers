@@ -28,7 +28,7 @@ locale-friendly money displays**.
 - 🎨 **Fully styleable** — integrates seamlessly with Compose’s `TextStyle`.
 - ⚡ **Adjustable speed** — from dramatic slow rolls to rapid-fire flicks.
 - 🪶 **Lightweight & clean** — minimal dependencies, easy to drop into any project.
-- 🌍 **KMP ready** — works across Android, iOS, Desktop and beyond.
+- 🌍 **KMP ready** — works across Android, iOS, Desktop and WASM.
 - 🧠 **Levenshtein-powered animation** — calculates the smoothest, shortest scroll path between
   states.
 
@@ -66,7 +66,7 @@ Add the dependency:
 
 ```groovy
 dependencies {
-    implementation "io.github.delacrixmorgan:rollingnumbers:X.X.X"
+    implementation "com.dontsaybojio:rollingnumbers:X.X.X"
 }
 ```
 
