@@ -1,5 +1,7 @@
 # Rolling Numbers - Odometer Scrolling Effect TextView 🎰
 
+![Maven Central Version](https://img.shields.io/maven-central/v/com.dontsaybojio/rollingnumbers?color=%234c1)
+
 **RollingNumbers** is a Kotlin Multiplatform Compose library that animates text changes by rolling
 individual characters vertically — just like a **odometer**, an **old school cash
 register**, or those nostalgic **airport split-flap boards**.
