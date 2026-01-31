@@ -1,6 +1,9 @@
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.android.kmp.library)
+
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.maven.publish)
@@ -8,9 +11,9 @@ plugins {
 
 mavenPublishing {
     coordinates(
-        groupId = "io.github.delacrixmorgan",
+        groupId = "com.dontsaybojio",
         artifactId = "rollingnumbers",
-        version = "0.2.1"
+        version = libs.versions.rollingnumbers.get()
     )
     pom {
         name.set("Rolling Numbers")
@@ -39,32 +42,23 @@ mavenPublishing {
 }
 
 kotlin {
-    androidTarget()
+    androidLibrary {
+        namespace = "com.dontsaybojio.rollingnumbers.lib"
+        compileSdk = libs.versions.android.compileSdk.get().toInt()
+        minSdk = libs.versions.android.minSdk.get().toInt()
+    }
     iosX64()
     iosArm64()
     iosSimulatorArm64()
     jvm("desktop")
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        browser()
+    }
     sourceSets {
         commonMain.dependencies {
-            implementation(project.dependencies.platform(libs.compose.bom))
-            implementation(compose.material3)
-            implementation(compose.materialIconsExtended)
-            implementation(compose.components.uiToolingPreview)
+            implementation(libs.compose.material3)
+            implementation(libs.compose.material.icons.extended)
         }
-    }
-}
-
-android {
-    namespace = "io.dontsayboj.rollingnumbers"
-    compileSdk = 36
-
-    defaultConfig {
-        minSdk = 23
-        version = libs.versions.rollingnumbers.get()
-        consumerProguardFiles("consumer-rules.pro")
-    }
-
-    publishing {
-        singleVariant("release")
     }
 }
