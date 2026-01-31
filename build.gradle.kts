@@ -7,5 +7,4 @@ plugins {
     alias(libs.plugins.compose.hot.reload) apply false
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.android.kmp.library) apply false
-    alias(libs.plugins.kotlin.android) apply false
 }
