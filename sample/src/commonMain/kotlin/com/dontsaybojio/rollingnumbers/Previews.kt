@@ -7,13 +7,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.tooling.preview.Preview
 import com.dontsaybojio.rollingnumbers.model.DefaultAnimationDuration
 import com.dontsaybojio.rollingnumbers.ui.Utils.provideAlphanumericList
 import com.dontsaybojio.rollingnumbers.ui.Utils.provideNumberString
 import kotlinx.coroutines.delay
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun NumberPreview() {
     var text by remember { mutableStateOf("1234") }
@@ -36,7 +36,7 @@ private fun NumberPreview() {
     )
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun AlphanumericPreview() {
     var text by remember { mutableStateOf("ABC123") }
@@ -57,7 +57,7 @@ private fun AlphanumericPreview() {
     )
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun CurrencyPreview() {
     var amount by remember { mutableStateOf(0.0) }

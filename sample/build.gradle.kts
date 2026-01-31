@@ -34,9 +34,9 @@ kotlin {
 
         commonMain.dependencies {
             implementation(project(":lib"))
-            implementation(compose.preview)
+            implementation(libs.ui.tooling.preview)
+
             implementation(compose.material3)
-            implementation(compose.components.uiToolingPreview)
             implementation(compose.materialIconsExtended)
 
             implementation(libs.androidx.navigation.compose)
@@ -71,4 +71,8 @@ compose.desktop {
             packageVersion = "1.0.0"
         }
     }
+}
+
+dependencies {
+    androidRuntimeClasspath(libs.ui.tooling)
 }

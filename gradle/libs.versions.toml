@@ -11,6 +11,8 @@ androidx-navigation-compose = "2.9.1"
 compose-hot-reload = "1.0.0"
 kotlin = "2.3.0"
 kotlinx-coroutines = "1.10.2"
+uiTooling = "1.10.0"
+uiToolingPreview = "1.10.0"
 mavenPublish = "0.36.0"
 
 [libraries]
@@ -18,6 +20,8 @@ androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = 
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "androidx-navigation-compose" }
 kotlinx-coroutinesSwing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
+ui-tooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "uiTooling" }
+ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -26,5 +30,4 @@ compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "composeMu
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 compose-hot-reload = { id = "org.jetbrains.compose.hot-reload", version.ref = "compose-hot-reload" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }
