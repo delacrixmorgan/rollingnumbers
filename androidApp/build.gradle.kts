@@ -26,7 +26,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.composeApp)
+    implementation(projects.sample)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
 }

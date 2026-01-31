@@ -28,4 +28,4 @@ dependencyResolutionManagement {
     }
 }
 
-include(":lib", ":composeApp", ":androidApp")
+include(":lib", ":sample", ":androidApp")
