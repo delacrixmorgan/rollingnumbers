@@ -11,6 +11,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.rememberTextMeasurer
 import com.dontsaybojio.rollingnumbers.levenshtein.LevenshteinAction
@@ -76,7 +78,11 @@ fun RollingNumbers(
         }
     }
 
-    Row(modifier = modifier.clipToBounds()) {
+    Row(
+        modifier = modifier
+            .clearAndSetSemantics { contentDescription = text }
+            .clipToBounds()
+    ) {
         val maxLength = max(currentText.length, text.length)
 
         for (i in 0 until maxLength) {

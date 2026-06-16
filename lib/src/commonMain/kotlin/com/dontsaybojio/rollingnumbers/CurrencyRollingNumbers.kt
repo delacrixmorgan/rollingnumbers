@@ -13,6 +13,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -75,7 +77,26 @@ fun CurrencyRollingNumbers(
         previousAmount = amount
     }
 
-    Row(modifier = modifier) {
+    // Build a single accessibility description for the full currency value
+    val formattedAmount = amount.format(
+        decimals = decimals,
+        decimalSeparator = decimalSeparator,
+        groupingSeparator = groupingSeparator,
+        signed = false
+    )
+    val accessibilityDescription = buildString {
+        if (amount < 0) append("−")
+        else if (showPositiveSignedSymbol) append("+")
+        if (isCurrencySymbolInFront) append(currencySymbol)
+        append(formattedAmount)
+        if (!isCurrencySymbolInFront) append(currencySymbol)
+    }
+
+    Row(
+        modifier = modifier.clearAndSetSemantics {
+            contentDescription = accessibilityDescription
+        }
+    ) {
         if (amount < 0) {
             Text(text = "−", style = textStyle, color = negativeSignedSymbolColor)
             Spacer(Modifier.width(spacingInBetweenSignedSymbol))

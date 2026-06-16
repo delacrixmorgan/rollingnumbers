@@ -33,6 +33,7 @@ locale-friendly money displays**.
 - 🌍 **KMP ready** — works across Android, iOS, Desktop and WASM.
 - 🧠 **Levenshtein-powered animation** — calculates the smoothest, shortest scroll path between
   states.
+- ♿ **Accessible** — screen readers announce the full target value as a single unit, no per-character noise.
 
 ## 🕹️ Fun Facts
 
@@ -161,6 +162,11 @@ independently (e.g., digits and symbols in different sequences).
 • Custom Direction Control:
 For number-based animations, use `ScrollingDirection.Up` or `ScrollingDirection.Down` to force a
 scroll direction or it can be `ScrollingDirection.Any` for the nearest distance.
+
+• Accessibility:
+Both `RollingNumbers` and `CurrencyRollingNumbers` use `clearAndSetSemantics` to expose a single
+`contentDescription` to screen readers. This ensures the complete target value is announced as one
+coherent unit, rather than individual animated characters being read separately.
 
 ## 💡 Contributing
 
